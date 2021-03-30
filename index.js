@@ -27,7 +27,11 @@ app.get('/users/:id', (req, res) => {
 
 // post request
 app.post('/addUser', (req, res) => {
-    console.log(req.body);
+    // save to database
+    const user = req.body;
+    user.id = 545;
+    res.send(user);
+    // console.log('data recived success' , req.body);
 })
 
 app.listen(545, () => console.log('Server Runnig Port:545'));
