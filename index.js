@@ -1,9 +1,13 @@
 const express = require('express');
 const cors = require('cors'); // directly isn't access to this cors cause is security effected>>
+const bodyParser = require('body-parser');
 
 const app = express();
 app.use(cors());
+app.use(bodyParser.json());
 
+
+// get request
 const users = ['Minhaj', 'Anika', "Ahmed", 'Sadik', 'ikra'];
 app.get('/', (req, res) => {
     res.send('I Know How To Run Node>');
@@ -18,6 +22,12 @@ app.get('/users/:id', (req, res) => {
     // console.log(req.query.sort)
     const name = users[id];
     res.send({name, id});
+})
+
+
+// post request
+app.post('/addUser', (req, res) => {
+    console.log(req.body);
 })
 
 app.listen(545, () => console.log('Server Runnig Port:545'));
