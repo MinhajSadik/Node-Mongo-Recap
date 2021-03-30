@@ -1,16 +1,26 @@
 const express = require('express');
+const cors = require('cors');
 
 const app = express();
+app.use(cors());
 
-
-app.listen(545, () => console.log('Server ON Port:545'));
-
-
+const users = ['Minhaj', 'Anika', "Ahmed", 'Sadik', 'ikra'];
 app.get('/', (req, res) => {
     res.send('I Know How To Run Node>');
-} )
+})
+ 
+app.get('/fruits/banana', (req, res) => {
+    res.send({fruits: 'banana'});
+})
 
+app.get('/users/:id', (req, res) => {
+    const id = req.params.id;
+    // console.log(req.query.sort)
+    const name = users[id];
+    res.send({name, id});
+})
 
+app.listen(545, () => console.log('Server Runnig Port:545'));
 
 
 // Normal function To Write and request to server
